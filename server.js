@@ -56,6 +56,7 @@ function getWeatherdata(request, response) {
 
 
 };
+let memoryData= {};
 
 server.get('/movie', getMoviedata);
 
