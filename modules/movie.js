@@ -2,6 +2,7 @@
 
 const axios = require('axios');
 module.exports = getMoviedata;
+let memoryData={};
 
 function getMoviedata(request, response) {
 
@@ -9,11 +10,17 @@ function getMoviedata(request, response) {
 
     let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${searchQuery}`
     // https://api.themoviedb.org/3/search/movie?api_key=612411cc0ea188e202e140f65be10d86&query=Amman
+if(memoryData[searchQuery] !== undefined){
+    console.log('catch hit')
+    response.send(memoryData[searchQuery]);
+} 
 
+else{
     axios
         .get(url)
         .then(movieData => {
-
+            console.log('catch miss')
+         memoryData[searchQuery]=movieData.data.results
             response.status(200).send(movieData.data.results.map(item => {
                 return new Movie(item)
             }))
@@ -23,8 +30,9 @@ function getMoviedata(request, response) {
             response.status(500).send(error)
         })
 
-
+}
 };
+console.log('movie')
 
 class Movie {
     constructor(item) {
