@@ -31,7 +31,7 @@ server.get('/test', (request, response) => {
 })
 
 
-//localhost:3001/Weather?cityName=Amman
+//localhost:3030/weather?cityName=Amman
 server.get('/weather', getWeatherdata);
 
 server.get('/movie', getMoviedata);
