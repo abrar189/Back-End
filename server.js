@@ -18,7 +18,7 @@ const PORT = process.env.PORT;
 server.use(cors());
 
 const getMoviedata = require('./modules/movie.js');
-const getWeatherdata = require('./modules/movie.js');
+const getWeatherdata = require('./modules/weather.js');
 
 
 
